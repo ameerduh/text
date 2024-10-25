@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main() {
+   int i = 0;
+   while(i<2){
+       pid_t pid = fork();
+       printf("Value of i: %d, pid: %d\n",i,getpid());
+        if(pid == 0){
+            printf("ppid: %d\n",getpid());
+            sleep(2);
+            printf("ppid: %d\n",getpid());
+        }
+        else if(pid>0){
+            printf("ppid: %d\n",pid);
+            sleep(1);
+        }
+        i++;
+   }
+
+    return 0;
+}
